@@ -14,27 +14,28 @@ let shared_nvim =
         gruvbox
       ];
       extraConfig = ''
-                set shiftwidth=4
-                set tabstop=4
-                set softtabstop=4
-                set breakindent expandtab number cursorline cursorcolumn noswapfile nohlsearch undofile ignorecase smartcase termguicolors
-                set wildmode=longest,list
-                set mouse="a"
-                set clipboard=unnamedplus
-                set background=dark
-                set completeopt=menuone,noselect
-                set syntax=on
+          set shiftwidth=4
+          set tabstop=4
+          set softtabstop=4
+          set breakindent expandtab number cursorline cursorcolumn noswapfile nohlsearch undofile ignorecase smartcase termguicolors
+          set wildmode=longest,list
+          set mouse="a"
+          set clipboard=unnamedplus
+          set background=dark
+          set completeopt=menuone,noselect
+          set syntax=on
         	colorscheme gruvbox
       '';
     };
   };
 in
-
 {
   imports =
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./shared-home-manager.nix
+      ./nginx+acme.nix
       # added as a channel
       <home-manager/nixos>
     ];
