@@ -22,6 +22,12 @@ let shared_config = {
   };
 }; in
 {
-  home-manager.users.host = shared_config;
-  home-manager.users.root = shared_config;
+  imports = [
+    # added as a channel
+    <home-manager/nixos>
+  ];
+  config = {
+    home-manager.users.host = shared_config;
+    home-manager.users.root = shared_config;
+  };
 }
