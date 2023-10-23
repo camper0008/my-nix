@@ -4,24 +4,46 @@
 
 { config, pkgs, ... }:
 
+let shared_nvim =
+  {
+    home.stateVersion = "23.05";
+
+    programs.neovim = {
+      enable = true;
+      plugins = with pkgs.vimPlugins; [
+        gruvbox
+      ];
+      extraConfig = ''
+                set shiftwidth=4
+                set tabstop=4
+                set softtabstop=4
+                set breakindent expandtab number cursorline cursorcolumn noswapfile nohlsearch undofile ignorecase smartcase termguicolors
+                set wildmode=longest,list
+                set mouse="a"
+                set clipboard=unnamedplus
+                set background=dark
+                set completeopt=menuone,noselect
+                set syntax=on
+        	colorscheme gruvbox
+      '';
+    };
+  };
+in
+
 {
   imports =
-    [ 
+    [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      # added as a channel
       <home-manager/nixos>
     ];
 
 
-  # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
-  # boot.loader.grub.efiSupport = true;
-  # boot.loader.grub.efiInstallAsRemovable = true;
-  # boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  # Define on which hard drive you want to install Grub.
   boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "server"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
@@ -66,39 +88,17 @@
       packages = with pkgs; [
         git
       ];
-      openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEfWi7igGqpvakxWaAn4/dqgCVqD7/Jh2PG3j8CSZACy"];
+      openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEfWi7igGqpvakxWaAn4/dqgCVqD7/Jh2PG3j8CSZACy" ];
     };
     mutableUsers = true;
   };
 
-
   home-manager.useGlobalPkgs = true;
-  home-manager.users.host = {
-    home.stateVersion = "23.05";
+  home-manager.users.root = shared_nvim;
+  home-manager.users.host = shared_nvim;
 
-    programs.neovim = {
-      enable = true;
-      plugins = with pkgs.vimPlugins; [
-	gruvbox
-      ];
-      extraConfig = ''
-        set shiftwidth=4
-        set tabstop=4
-        set softtabstop=4
-        set breakindent expandtab number cursorline cursorcolumn noswapfile nohlsearch undofile ignorecase smartcase termguicolors
-        set wildmode=longest,list
-        set mouse="a"
-        set clipboard=unnamedplus
-        set background=dark
-        set completeopt=menuone,noselect
-        set syntax=on
-	colorscheme gruvbox
-      '';
-    };
-  };
-
-  virtualisation.docker.rootless = { 
-    enable = true; 
+  virtualisation.docker.rootless = {
+    enable = true;
     setSocketVariable = true;
   };
 
@@ -127,7 +127,6 @@
     bantime = "24h";
   };
 
-  # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 22 ];
   networking.firewall.allowedUDPPorts = [ 22 ];
   networking.firewall.enable = true;
@@ -147,3 +146,4 @@
 
 }
 
+# vim: set shiftwidth=2 tabstop=2
