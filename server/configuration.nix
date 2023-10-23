@@ -67,8 +67,6 @@
     mutableUsers = true;
   };
 
-  home-manager.useGlobalPkgs = true;
-
   virtualisation.docker.rootless = {
     enable = true;
     setSocketVariable = true;

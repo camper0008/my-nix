@@ -1,3 +1,5 @@
+{ pkgs, ... }:
+
 let shared_config = {
   home.stateVersion = "23.05";
 
@@ -20,13 +22,18 @@ let shared_config = {
       colorscheme gruvbox
     '';
   };
-}; in
+};
+
+in
 {
   imports = [
     # added as a channel
     <home-manager/nixos>
   ];
+
   config = {
+
+    home-manager.useGlobalPkgs = true;
     home-manager.users.host = shared_config;
     home-manager.users.root = shared_config;
   };

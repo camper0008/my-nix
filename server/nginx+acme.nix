@@ -11,6 +11,6 @@
   };
   security.acme = {
     acceptTerms = true;
-    email = "tphollebeek@gmail.com";
+    defaults.email = "tphollebeek@gmail.com";
   };
 }
