@@ -17,7 +17,7 @@
     virtualHosts."search.tpho.dk" = {
       onlySSL = true;
       enableACME = true;
-      locations."/".proxyPass = "http://localhost:8080";
+      locations."/".proxyPass = "http://localhost:8081";
     };
 
     virtualHosts."*.tpho.dk" = {

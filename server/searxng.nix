@@ -4,11 +4,12 @@
     oci-containers.containers = {
       SearxNG = {
         image = "searxng/searxng:latest";
-        extraOptions = [ "--restart=unless-stopped" ];
         autoStart = true;
-        ports = [ "8080:8080" ];
+        ports = [ "8081:8080" ];
         environment = {
-          BASE_URL = "http://localhost:8080";
+          PORT = "8080";
+          BIND_URL = "0.0.0.0";
+          BASE_URL = "https://search.tpho.dk";
           INSTANCE_NAME = "search.tpho.dk";
         };
       };
