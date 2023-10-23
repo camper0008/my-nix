@@ -1,2 +1,3 @@
 # my-nix
-# my-nix
+
+nix notes & config
