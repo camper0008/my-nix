@@ -9,13 +9,13 @@
     enable = true;
 
     virtualHosts."server.tpho.dk" = {
-      onlySSL = true;
+      addSSL = true;
       enableACME = true;
       locations."/".proxyPass = "https://pieter-loves-anne.netlify.app";
     };
 
     virtualHosts."search.tpho.dk" = {
-      onlySSL = true;
+      addSSL = true;
       enableACME = true;
       locations."/".proxyPass = "http://localhost:8081";
     };

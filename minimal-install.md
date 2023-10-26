@@ -27,7 +27,7 @@ if using x86, use MBR, otherwise use EFI
 to install home manager, run
 
 ```bash
-sudo nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz home-manager
 
 sudo nix-channel --update
 ```
