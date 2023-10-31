@@ -14,6 +14,12 @@
       locations."/".proxyPass = "https://pieter-loves-anne.netlify.app";
     };
 
+    virtualHosts."bordtennis.tpho.dk" = {
+      addSSL = true;
+      enableACME = true;
+      locations."/".proxyPass = "https://inquisitive-madeleine-d6a29f.netlify.app";
+    };
+
     virtualHosts."search.tpho.dk" = {
       addSSL = true;
       enableACME = true;
