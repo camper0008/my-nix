@@ -17,7 +17,8 @@
     virtualHosts."bordtennis.tpho.dk" = {
       addSSL = true;
       enableACME = true;
-      locations."/".proxyPass = "https://inquisitive-madeleine-d6a29f.netlify.app";
+      locations."/".proxyPass = "https://bordtennis-multiplayer.netlify.app";
+      locations."/singleplayer".proxyPass = "https://bordtennis-singleplayer.netlify.app/";
     };
 
     virtualHosts."search.tpho.dk" = {
