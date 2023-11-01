@@ -18,7 +18,7 @@
       addSSL = true;
       enableACME = true;
       locations."/".proxyPass = "https://bordtennis-multiplayer.netlify.app";
-      locations."/singleplayer".proxyPass = "https://bordtennis-singleplayer.netlify.app/";
+      locations."/singleplayer/".proxyPass = "https://bordtennis-singleplayer.netlify.app/";
     };
 
     virtualHosts."search.tpho.dk" = {
