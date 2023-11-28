@@ -48,6 +48,7 @@
       xtitle
       xwinmosaic
       gruvbox-gtk-theme
+      vlc
     ];
   };
 
