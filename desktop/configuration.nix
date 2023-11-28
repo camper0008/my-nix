@@ -92,6 +92,7 @@ in
       alacritty
       promptShortener
       exa
+      bat
     ];
   };
 
