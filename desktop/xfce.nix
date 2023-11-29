@@ -1,5 +1,16 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
+let icons = 
+  import ./gruvbox-icons.nix {
+    lib=lib; 
+    stdenvNoCC=pkgs.stdenvNoCC; 
+    fetchFromGitHub=pkgs.fetchFromGitHub; 
+    gtk3=pkgs.gtk3; 
+    gnome-icon-theme=pkgs.gnome-icon-theme; 
+    breeze-icons=pkgs.breeze-icons; 
+    hicolor-icon-theme=pkgs.hicolor-icon-theme;
+  }; 
+in
 {
   environment = {
     systemPackages = with pkgs; [
@@ -49,6 +60,7 @@
       xwinmosaic
       gruvbox-gtk-theme
       vlc
+      icons
     ];
   };
 
@@ -109,5 +121,3 @@
     mediaKeys.enable = true;
   };
 }
-
-
