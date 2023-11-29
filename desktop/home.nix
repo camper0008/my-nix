@@ -9,6 +9,13 @@ let shared_config = {
       "Net/IconThemeName" = "Gruvbox-Plus-Dark";
       "Gtk/CursorThemeName" = "Capitaine Cursors (Gruvbox)";
     };
+    xfce4-keyboard-shortcuts = {
+      "commands/custom/<Super>Return" = "exo-open --launch TerminalEmulator";
+      "commands/custom/<Super>s" = "xfce4-appfinder";
+    };
+    xfwm4 = {
+      "general/theme" = "Gruvbox-Dark-BL";
+    };
   };
 
   gtk = {
