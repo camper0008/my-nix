@@ -85,7 +85,7 @@ in
     };
   };
 
-  security.pam.services.gdm.enableGnomeKeyring = true;
+  security.pam.services.lightdm.enableGnomeKeyring = true;
 
   services = {
     blueman.enable = true;
@@ -108,7 +108,7 @@ in
           enable = true;
           greeters.slick = {
             enable = true;
-            theme.name = "Zukitre-dark";
+            theme.name = "Gruvbox-Dark-BL";
           };
         };
       };

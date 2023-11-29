@@ -89,7 +89,6 @@ in
       spotify
       discord
       thunderbird
-      alacritty
       promptShortener
       exa
       bat
