@@ -13,9 +13,9 @@ let promptShortener =
       rev = "71dc5bddca63eceb3f0a5a9a2cd241ed77628656";
       sha256="rNSDER3CsC3r5hXVkEpgUdSCirlCMPAqOqvjNGReiZk=";
     }
-  ) {
-    lib=lib; rustPlatform=pkgs.rustPlatform; fetchFromGitHub=pkgs.fetchFromGitHub;
-  }
+  ) ( with pkgs; {
+    inherit lib rustPlatform fetchFromGitHub;
+  })
 );
 in
 {
