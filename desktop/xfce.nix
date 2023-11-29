@@ -1,15 +1,15 @@
 { lib, pkgs, ... }:
 
-let icons = 
-  import ./gruvbox-icons.nix {
-    lib=lib; 
-    stdenvNoCC=pkgs.stdenvNoCC; 
-    fetchFromGitHub=pkgs.fetchFromGitHub; 
-    gtk3=pkgs.gtk3; 
-    gnome-icon-theme=pkgs.gnome-icon-theme; 
-    breeze-icons=pkgs.breeze-icons; 
-    hicolor-icon-theme=pkgs.hicolor-icon-theme;
-  }; 
+let gruvboxIcons = 
+  import ./gruvbox-icons.nix ( with pkgs; {
+    inherit lib
+      stdenvNoCC
+      fetchFromGitHub
+      gtk3
+      gnome-icon-theme
+      breeze-icons
+      hicolor-icon-theme;
+  }); 
 in
 {
   environment = {
@@ -58,9 +58,9 @@ in
       xsel
       xtitle
       xwinmosaic
+      capitaine-cursors-themed
       gruvbox-gtk-theme
-      vlc
-      icons
+      gruvboxIcons
     ];
   };
 
@@ -121,3 +121,5 @@ in
     mediaKeys.enable = true;
   };
 }
+
+

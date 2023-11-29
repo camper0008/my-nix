@@ -3,12 +3,16 @@
 let shared_config = {
   home.stateVersion = "23.05";
 
+  xfconf.settings = {
+    xsettings = {
+      "Net/ThemeName" = "Gruvbox-Dark-BL";
+      "Net/IconThemeName" = "Gruvbox-Plus-Dark";
+      "Gtk/CursorThemeName" = "Capitaine Cursors (Gruvbox)";
+    };
+  };
+
   gtk = {
     enable = true;
-    theme = {
-      name = "gruvbox-dark";
-      package = pkgs.gruvbox-gtk-theme;
-    };
     gtk3.extraConfig = {
       Settings = ''
         gtk-application-prefer-dark-theme=1
