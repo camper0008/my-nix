@@ -1,13 +1,14 @@
-{ lib, stdenvNoCC, fetchFromGitHub, gtk3, gnome-icon-theme, mint-x-icons, hicolor-icon-theme }:
+{ lib, stdenvNoCC, fetchFromGitHub, gtk3, gnome-icon-theme, breeze-icons, hicolor-icon-theme }:
 
 stdenvNoCC.mkDerivation rec {
+  name = "gruvbox-plus-icon";
   version = "4.1-unstable";
 
   src = fetchFromGitHub {
     owner = "SylEleuth";
-    repo = "gruvbox-plus-icons-pack";
-    rev = "1f32isq1xyn9b6p1nx5rssqgg9gw0jp9ld19860xk29fspmlfb8n";
-    sha256 = "";
+    repo = "gruvbox-plus-icon-pack";
+    rev = "3f995a4be40eca7836cc4cb18cea10559fafcc4d";
+    sha256 = "sha256-Z9sHnnz3piAWEyUjXbyEGLsDN4GGGcKVCcugnZa1YNo=";
   };
 
   nativeBuildInputs = [ gtk3 ];
