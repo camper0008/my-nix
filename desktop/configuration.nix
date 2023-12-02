@@ -90,7 +90,7 @@ in
       discord
       thunderbird
       promptShortener
-      exa
+      eza
       bat
     ];
   };
@@ -102,7 +102,7 @@ in
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     cantarell-fonts
   ];
 
@@ -114,6 +114,9 @@ in
     rustc
     cargo
     clang
+    clippy
+    rust-analyzer
+    rustfmt
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

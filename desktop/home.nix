@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 
 let shared_config = {
-  home.stateVersion = "23.05";
+  home.stateVersion = "23.11";
 
   xfconf.settings = {
     xsettings = {
@@ -33,6 +33,11 @@ let shared_config = {
   };
 
   programs.gpg.enable = true;
+
+  programs.bacon = {
+    enable = true;
+    settings = {};
+  };
 
   programs.bash = {
     enable = true;
@@ -95,6 +100,10 @@ let shared_config = {
     enable = true;
     userName  = "Theis Pieter Hollebeek";
     userEmail = "tphollebeek@gmail.com";
+    extraConfig = {
+      init.defaultBranch = "main";
+
+    };
   };
 
   xdg.configFile.nvim = {
@@ -104,6 +113,11 @@ let shared_config = {
 
   programs.neovim = {
     enable = true;
+    extraPackages = with pkgs; [
+      rust-analyzer
+      ripgrep
+      fzf
+    ];
   };
 };
 in

@@ -33,15 +33,8 @@ require("packer").startup(function(use)
 	-- LSP Configuration & Plugins
 	"neovim/nvim-lspconfig",
 	requires = {
-	    -- Automatically install LSPs to stdpath for neovim
-	    "williamboman/mason.nvim",
-	    "williamboman/mason-lspconfig.nvim",
-
 	    -- Useful status updates for LSP
 	    "j-hui/fidget.nvim",
-
-	    -- Additional lua configuration, makes nvim stuff amazing
-	    "folke/neodev.nvim",
 	},
     })
 
@@ -76,12 +69,6 @@ require("packer").startup(function(use)
 
     -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
     use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make", cond = vim.fn.executable("make") == 1 })
-
-    -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
-    local has_plugins, plugins = pcall(require, "custom.plugins")
-    if has_plugins then
-	plugins(use)
-    end
 
     if is_bootstrap then
 	require("packer").sync()
@@ -186,7 +173,7 @@ require("Comment").setup()
 
 -- Enable `lukas-reineke/indent-blankline.nvim`
 require("ibl").setup({
-    indent = { char = "┊" },
+    indent = { char = "|" },
 })
 
 -- [[ Configure Telescope ]]
@@ -305,45 +292,9 @@ local on_attach = function(_, bufnr)
     vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
 end
 
--- Enable the following language servers
---  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
---
---  Add any additional override configuration in the following tables. They will be passed to
---  the `settings` field of the server config. You must look up that documentation yourself.
-local servers = {
-    -- clangd = {},
-    -- gopls = {},
-    -- pyright = {},
-    rust_analyzer = {},
-    -- tsserver = {},
-}
-
--- Setup neovim lua configuration
-require("neodev").setup()
---
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-
--- Setup mason so it can manage external tooling
-require("mason").setup()
-
--- Ensure the servers above are installed
-local mason_lspconfig = require("mason-lspconfig")
-
-mason_lspconfig.setup({
-    ensure_installed = vim.tbl_keys(servers),
-})
-
-mason_lspconfig.setup_handlers({
-    function(server_name)
-	require("lspconfig")[server_name].setup({
-	    capabilities = capabilities,
-	    on_attach = on_attach,
-	    settings = servers[server_name],
-	})
-    end,
-})
 
 -- Turn on lsp status information
 require("fidget").setup()
@@ -351,6 +302,12 @@ require("fidget").setup()
 -- nvim-cmp setup
 local cmp = require("cmp")
 local luasnip = require("luasnip")
+
+-- lspconfig
+require("lspconfig").rust_analyzer.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
 
 cmp.setup({
     snippet = {
