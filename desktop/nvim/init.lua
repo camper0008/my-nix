@@ -173,7 +173,7 @@ require("Comment").setup()
 
 -- Enable `lukas-reineke/indent-blankline.nvim`
 require("ibl").setup({
-    indent = { char = "|" },
+    indent = { char = "┆" },
 })
 
 -- [[ Configure Telescope ]]
@@ -304,10 +304,15 @@ local cmp = require("cmp")
 local luasnip = require("luasnip")
 
 -- lspconfig
-require("lspconfig").rust_analyzer.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-})
+local lsp_servers = { "rust_analyzer" };
+
+local lspconfig = require("lspconfig");
+for _, server in ipairs(lsp_servers) do
+    lspconfig[server].setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+    });
+end
 
 cmp.setup({
     snippet = {
