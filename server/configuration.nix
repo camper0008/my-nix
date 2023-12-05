@@ -11,6 +11,7 @@
       ./hardware-configuration.nix
       ./shared-home-manager.nix
       ./nginx+acme.nix
+      ./prosody.nix
     ];
 
 
@@ -92,7 +93,7 @@
     bantime = "24h";
   };
 
-  networking.firewall.allowedTCPPorts = [ 22 80 443 ];
+  networking.firewall.allowedTCPPorts = [ 22 80 443 5281 5000 5222 5269 5281 ];
   networking.firewall.allowedUDPPorts = [ 22 80 443 ];
   networking.firewall.enable = true;
 

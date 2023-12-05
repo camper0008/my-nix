@@ -27,6 +27,11 @@
       locations."/".proxyPass = "http://localhost:8081";
     };
 
+    virtualHosts."jesper.er.en.glowie.dk" = {
+      addSSL = true;
+      enableACME = true;
+    };
+
     virtualHosts."*.tpho.dk" = {
       rejectSSL = true;
       locations."/".return = "404";
@@ -36,5 +41,20 @@
   security.acme = {
     acceptTerms = true;
     defaults.email = "tphollebeek@gmail.com";
+
+    certs = {
+      "glowie.dk" = {
+        listenHTTP = ":5280";
+        group = "prosody";
+      };  
+      "conference.glowie.dk" = {
+        listenHTTP = ":5280";
+        group = "prosody";
+      };  
+      "upload.glowie.dk" = {
+        listenHTTP = ":5280";
+        group = "prosody";
+      };  
+    };
   };
 }
