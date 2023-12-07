@@ -92,6 +92,7 @@ in
       promptShortener
       eza
       bat
+      gajim
     ];
   };
 
@@ -117,6 +118,8 @@ in
     clippy
     rust-analyzer
     rustfmt
+    openssl
+    pkg-config
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

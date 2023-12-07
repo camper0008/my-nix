@@ -60,7 +60,7 @@ let shared_config = {
         alias bs="nixos-rebuild switch"
     '';
   };
-
+  
   programs.alacritty = {
     enable = true;
     settings = {
@@ -102,7 +102,6 @@ let shared_config = {
     userEmail = "tphollebeek@gmail.com";
     extraConfig = {
       init.defaultBranch = "main";
-
     };
   };
 
