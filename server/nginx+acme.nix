@@ -46,14 +46,8 @@
       "glowie.dk" = {
         listenHTTP = ":5280";
         group = "prosody";
-      };  
-      "conference.glowie.dk" = {
-        listenHTTP = ":5280";
-        group = "prosody";
-      };  
-      "upload.glowie.dk" = {
-        listenHTTP = ":5280";
-        group = "prosody";
+
+        extraDomainNames = [ "conference.glowie.dk" "upload.glowie.dk" ];
       };  
     };
   };
