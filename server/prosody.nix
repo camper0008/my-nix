@@ -4,12 +4,12 @@
   services.prosody = {
     enable = true;
     admins = [ "pieter@glowie.dk" ];
-    ssl.cert = "/var/lib/acme/glowie.dk/fullchain.pem";
+    ssl.cert = "/var/lib/acme/glowie.dk/cert.pem";
     ssl.key = "/var/lib/acme/glowie.dk/key.pem";
     virtualHosts."glowie.dk" = {
         enabled = true;
         domain = "glowie.dk";
-        ssl.cert = "/var/lib/acme/glowie.dk/fullchain.pem";
+        ssl.cert = "/var/lib/acme/glowie.dk/cert.pem";
         ssl.key = "/var/lib/acme/glowie.dk/key.pem";
     };
     muc = [ {

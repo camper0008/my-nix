@@ -44,7 +44,7 @@
 
     certs = {
       "glowie.dk" = {
-        listenHTTP = ":5280";
+        listenHTTP = ":80";
         group = "prosody";
 
         extraDomainNames = [ "conference.glowie.dk" "upload.glowie.dk" ];

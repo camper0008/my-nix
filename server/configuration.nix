@@ -72,6 +72,8 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default
+    pkg-config
+    openssl
   ];
 
 
@@ -93,7 +95,7 @@
     bantime = "24h";
   };
 
-  networking.firewall.allowedTCPPorts = [ 22 80 443 5281 5000 5222 5269 5281 ];
+  networking.firewall.allowedTCPPorts = [ 22 80 443 5000 5222 5269 5281 5347 ];
   networking.firewall.allowedUDPPorts = [ 22 80 443 ];
   networking.firewall.enable = true;
 
