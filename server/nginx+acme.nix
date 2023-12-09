@@ -8,6 +8,18 @@
   services.nginx = {
     enable = true;
 
+    virtualHosts."tpho.dk" = {
+      addSSL = true;
+      enableACME = true;
+      locations."/".proxyPass = "https://celadon-gnome-e272fa.netlify.app";
+    };
+
+    virtualHosts."tphollebeek.dk" = {
+      addSSL = true;
+      enableACME = true;
+      locations."/".return = "301 https://tpho.dk$request_uri";
+    };
+
     virtualHosts."server.tpho.dk" = {
       addSSL = true;
       enableACME = true;
